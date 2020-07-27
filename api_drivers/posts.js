@@ -28,20 +28,19 @@ router.get('/all_posts', (req,res) => {
 });
 
 router.post('/:content/:date', (req, res) => {
-    var content = req.params.id;
-    var date = req.params.name;
+    var content = req.params.content;
+    var date = req.params.date;
     var likes = 0;
     var sql = 'INSERT INTO posts (date_time,content,likes_count) values ("' + date + '","' + content + '",' + likes + ')';
 
-    connection.query(sql, (err,res) => {
+    connection.query(sql, (err,data) => {
         if(err) throw err;
-        //console.log(res);
-        //asdas
         res.send({
             res_code: 200,
             res_data: data
-        });
+        })
       });
+      
 })
 
 module.exports.router = router;

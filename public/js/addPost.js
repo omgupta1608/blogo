@@ -2,9 +2,10 @@ const ENV_HOST =  'http://'+window.location.hostname+':4000';
 
 function addPost(){
     //window.alert("POST ADDED");
-    var content = document.getElementById("postContent").innerHTML;
+    var content = document.getElementById("postContent").value.toString();
     //if(content != ""){
-        add_to_db(content);
+        console.log(content);
+    add_to_db(content);
     //}
 }
 
