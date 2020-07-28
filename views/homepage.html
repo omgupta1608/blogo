@@ -17,22 +17,29 @@
     <script src="http://localhost:4000/js/homepage.js">
 
     </script>
-    <!-- <script>
-        function get(){
-            var d = new Date();
-            var month = d.getMonth() + 1;
-            document.getElementById('test').innerHTML = d.getHours() + ':' + d.getMinutes() + ' ' + d.getDate() + '-' + month  + '-' + d.getFullYear();
-        }
-        
-    </script> -->
-    <CENTER>
-    <h1>Blogo</h1>
 
-    <button id="addPost" onclick="window.open('http://localhost:4000/addPost','_self');" type="button" class="btn btn-secondary btn-lg btn-block">Create Post</button>
-
-    <div id="posts">
-
+    <div id="nav-header">
+        <center>
+            <h1 id="main-heading">
+                BLOGO - A blogging platform
+            </h1>
+        </center>
     </div>
-</CENTER>
+    <div id="main-content">
+        <center>
+            <!-- <button id="addPost" onclick="window.open('http://localhost:4000/addPost','_self');" type="button" class="btn btn-secondary btn-lg btn-block">Create Post</button> -->
+            <div class="button-1">
+                <div class="eff-1"></div>
+                <a href="http://localhost:4000/addPost"> Add Post </a>
+              </div>
+            <div id="posts">
+
+            </div>
+
+        </center>
+        
+    </div>
+    
+    
 </body>
 </html>
