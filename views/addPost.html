@@ -30,6 +30,19 @@
     <br><br>
     <h1>Create a new Post</h1>
 
+    <br><br>
+
+    <form method="POST" action="/upload-profile-pic" enctype="multipart/form-data">
+        <div>
+            <label>Select the photo to post</label><br>
+            <input id="uploaded_image" onchange="readURL(this)" type="file" name="profile_pic" /><br>
+            <img id="your_image" src="#" alt="your image" />
+        </div>
+        <!-- <div>
+            <input type="submit" name="btn_upload_profile_pic" value="Upload" />
+        </div> -->
+    </form>
+<br><br><br><br>
     <form id="addPostForm">
         <div class="form-group">
           <label for="exampleInputEmail1">Post Content</label>
@@ -37,8 +50,12 @@
           <small id="emailHelp" class="form-text text-muted">We appreciate your contribution.</small>
         </div>
         
-      </form>
-      <button onclick="addPost()" class="btn btn-primary">POST</button>
+    </form>
+
+    
+
+    <button onclick="addPost()" class="btn btn-primary">POST</button>
+
 </CENTER>
 </body>
 </html>
