@@ -1,30 +1,32 @@
-const ENV_HOST =  'http://'+window.location.hostname+':4000';
+const ENV_HOST = 'http://' + window.location.hostname + ':4000';
+setTimeout(() => {
+    $.ajax({
+        type: 'GET',
+        dataType: 'json',
+        url: ENV_HOST + '/api/posts/all_posts',
+        success: function (data) {
+            console.log(data);
+            document.getElementById("loading").style.display = 'none';
+            data.reverse();
+            $.each(data, function (index, element) {
+
+                //var markup = '<h6>' + element.content + '<br> Likes : ' + element.likes_count + '<br> Posted On : ' + element.date_time + '<br><br>';
+                var post = '<div class="card" style="width: 30%; margin-top: 20px; margin-left: 30px"><div class="card-header">' + element.post_id + '</div><div class="post-body"><img src="http://localhost:4000/uploads/' + element.imageUrl + '" alt="post image" class="img-fluid" style="height:20rem; width: 28rem;"><h5 class="post-content" style="margin-top: 5px;">' + element.content + '</h5><p class="post-date" style="color: gray;">' + element.date_time + '</p></div></div>';
+                $('#posts').append(post);
+                //$('#data_table').append($('<tr>').append($('<td>').text(element.password)));
+            });
+
+        }
+    });
 
 
-$.ajax({
-    type: 'GET',
-    dataType: 'json',
-    url: ENV_HOST + '/api/posts/all_posts',
-    success: function(data){
-        console.log(data);
-        document.getElementById("loading").style.display = 'none';
-        data.reverse();
-        $.each(data, function(index, element) {
-                
-            //var markup = '<h6>' + element.content + '<br> Likes : ' + element.likes_count + '<br> Posted On : ' + element.date_time + '<br><br>';
-            var post = '<div class="card" style="width: 30%; margin-top: 20px; margin-left: 30px"><div class="card-header">'+element.post_id + '</div><div class="post-body"><img src="http://localhost:4000/uploads/' + element.imageUrl + '" alt="post image" class="img-fluid" style="height:20rem; width: 28rem;"><h5 class="post-content" style="margin-top: 5px;">' + element.content + '</h5><p class="post-date" style="color: gray;">' + element.date_time + '</p></div></div>';
-            $('#posts').append(post);
-            //$('#data_table').append($('<tr>').append($('<td>').text(element.password)));
-        });
-
-    }
-});
+}, 5000);
 
 
-    
 
-function Like(ele){
-    
+
+function Like(ele) {
+
 }
 
 {/* <div class="card" style="width: 28rem; margin-top: 20px;">

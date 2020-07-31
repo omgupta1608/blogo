@@ -101,6 +101,7 @@ footer {
   text-align: center;
   background-color: black;
   padding: 40px 0px;
+  z-index: 2;
   color: #ffffff;
   
 }
@@ -127,3 +128,13 @@ footer a.privacy-policy {
   color: white;
 }
 
+
+#loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#loading img {
+  margin: auto;
+}
