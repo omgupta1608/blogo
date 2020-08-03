@@ -32,6 +32,24 @@ router.get('/all_posts', (req,res) => {
 
 });
 
+
+
+router.post('/:id/like_post', (req, res) => {
+    var post_id = req.params.id;
+
+
+    var sql = 'UPDATE posts SET likes_count = likes_count + 1 WHERE post_id = ' + post_id;
+
+    connection.query(sql, (err, data) => {
+        if(err) throw err;
+
+        res.send({
+            res_code: 200,
+            res_data: data
+        });
+    });
+});
+
 router.post('/:content/:date', upload.single('post_image'), (req, res) => {
     var content = req.params.content;
     var date = req.params.date;
@@ -44,10 +62,10 @@ router.post('/:content/:date', upload.single('post_image'), (req, res) => {
         res.send({
             res_code: 200,
             res_data: data
-        })
+        });
       });
       
-})
+});
 
 // router.post('/upload_image' ,(req, res) => {
 //     let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
