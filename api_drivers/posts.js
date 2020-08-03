@@ -11,9 +11,9 @@ const upload = multer({dest:'public/uploads/'});
 
 const connection = sql.createConnection({
     host: 'localhost',
-    user: 'om',
-    password: 'omgupta1608',
-    database: 'blogo_db'
+    user: 'om', // Use your credentials (Username)
+    password: 'omgupta1608',// Use your credentials (Password)
+    database: 'blogo_db' //Your DB Name
 });
   
 connection.connect((err) => {
