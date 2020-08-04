@@ -5,12 +5,20 @@ const app = express();
 
 app.use(express.static('public/'));
 
+
 var posts = require('./api_drivers/posts').router;
+var users = require('./api_drivers/users').router;
 
 app.use('/api/posts/',posts);
+app.use('/api/users/',users);
+
 
 app.get('/', (req,res) => {
     res.sendFile(__dirname + '/views/homepage.html');
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(__dirname + '/views/login.html');
 });
 
 app.get('/addPost', (req, res) => {
