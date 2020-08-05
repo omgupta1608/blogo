@@ -42,20 +42,32 @@ router.post('/:username/:password/signup', async (req, res) => {
 });
 
 router.post('/:username/:password/login', async (req, res) => {
-    const user = await getUser(req.params.username);
-    console.log(user);
-    if (user == null) {
-      return res.status(400).send('Cannot find user');
-    }
-    try {
-      if(await bcrypt.compare(req.params.password, user.password)) {
-        res.send('Success');
-      } else {
-        res.send('Not Allowed');
+    var user = null;
+    if(!req.params.username || !req.params.password)
+    return res.status(400).send('email & password are required');
+    var sql = 'SELECT * FROM users WHERE username = "' + req.params.username + '"';
+    connection.query(sql ,(err, data) => {
+      if (err) throw err;
+      user = data;
+      console.log(user);
+      if (user == null) {
+        return res.status(400).send('Cannot find user');
       }
-    } catch {
-      res.status(500).send();
-    }
+      try{
+        bcrypt.compare(req.params.password, user[0].password).then((isMatched) => {
+          if(isMatched){
+            res.send('Successfully Logged In');
+          }else{
+            res.send('Wrong Credentials!');
+          }
+        }).catch(err => {
+          res.status(500).send('Internal server error\n' + err.toString());
+        });      
+      } catch {
+        res.status(500).send('Server Error!');
+      }
+    });//getUser(req.params.username);
+    
 });
 
 router.get('/users', (req,res) => {
