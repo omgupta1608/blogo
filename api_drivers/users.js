@@ -8,9 +8,9 @@ router.use(express.json());
 
 const connection = sql.createConnection({
     host: 'localhost',
-    user: 'om', // Use your credentials (Username)
-    password: 'omgupta1608',// Use your credentials (Password)
-    database: 'blogo_db' //Your DB Name
+    user: 'id14543703_om', // Use your credentials (Username)
+    password: '&s)F<X_m><-=9wT',// Use your credentials (Password)
+    database: 'id14543703_blogo_db' //Your DB Name
 });
   
 connection.connect((err) => {
