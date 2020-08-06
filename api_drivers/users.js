@@ -30,13 +30,10 @@ router.post('/:username/:password/signup', async (req, res) => {
 
     connection.query(sql, (err,data) => {
         if(err) throw err;
-        res.send({
-            res_code: 201,
-            res_data: data
-        });
+        res.send('Welcome ' + req.params.username);
     });
     }catch{
-        res.status(500).send();
+        res.send("Something went wrong");
     }
     
 });
@@ -58,7 +55,7 @@ router.post('/:username/:password/login', async (req, res) => {
       try{
         bcrypt.compare(req.params.password, user[0].password).then((isMatched) => {
           if(isMatched){
-            res.send('Successfully Logged In');
+            res.send('Successfully Logged In as ' + user[0].username);
           }else{
             res.send('Wrong Credentials!');
           }

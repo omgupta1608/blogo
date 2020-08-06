@@ -10,25 +10,13 @@ function login(){
         success: function(data){
             console.log(data.toString());
             Materialize.toast(data.toString());
-            $("#username").val("");
-            $("#password").val("");
-            switch(data.toString()){
-                case "email & password are required":
-                    //Materialize.toast('Email & Password are required');
-                    Materialize.toast(data.toString());
-                    break;
-                case "Successfully Logged In":
-                    //Materialize.toast('Successfully Logged In');
-                    Materialize.toast(data.toString());
-                    break;
-                case "Wrong Credentials!":
-                    Materialize.toast(data.toString());
-                    break;
-                case "Server Error!":
-                    //Materialize.toast('Something went wrong!');
-                    Materialize.toast(data.toString());
-                    break;
-            }
+            
+            setTimeout(() => {
+                if(data.includes("Successfully")){
+                    window.open('http://localhost:4000/homepage', '_self');
+                }
+            },1000);
+            
         }
     });
 }
