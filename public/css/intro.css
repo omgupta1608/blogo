@@ -1,13 +1,3 @@
-#addPostForm{
-    max-width: 60%;
-}
-
-#your_image{
-height: 30%;
-width: 30%;
-margin-top: 10px;
-}
-
 header {
     height: 60px;
     width: 100%;
@@ -61,7 +51,9 @@ header {
     text-align: center;
     background-color: black;
     padding: 40px 0px;
+    z-index: 2;
     color: #ffffff;
+    
   }
   
   footer h1 {
@@ -85,4 +77,62 @@ header {
     font-size: 0.8rem;
     color: white;
   }
-  
+
+  #heading{
+      height: 47.5vh;
+      margin-top: 20vh;
+      text-align: center;
+  }
+
+  #blogo{
+    vertical-align:middle;
+    text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+    font-size: 72px;
+  }
+
+  #description{
+      width: 50%;
+      text-align: center;
+  }
+
+  .buttons{
+    overflow: hidden;
+    color: white;
+    
+  }
+  .btn,input[type="submit"]{
+	cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 12px 18px;
+    font-size: 12px;
+    line-height: 19px;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif; font-weight:400;
+    letter-spacing: 3px;
+    -webkit-transition: all .4s ease-in-out;
+       -moz-transition: all .4s ease-in-out;
+        -ms-transition: all .4s ease-in-out;
+         -o-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+}
+
+.buttons a {
+	 
+	margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+/* a#link {position: absolute; left: 20px; bottom: 10px; text-decoration: none; color: #555; font-weight: bold;} */
+

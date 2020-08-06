@@ -74,11 +74,19 @@ nav {
   padding: 10px 20px;
 }
 
-header div{
+header div a{
   padding-left: 20px;
   color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 40px;
 
 }
+
+header div a:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+
 nav a {
   text-decoration: none;
   padding: 5px 20px;

@@ -8,9 +8,9 @@ router.use(express.json());
 
 const connection = sql.createConnection({
     host: 'localhost',
-    user: 'id14543703_om', // Use your credentials (Username)
-    password: '&s)F<X_m><-=9wT',// Use your credentials (Password)
-    database: 'id14543703_blogo_db' //Your DB Name
+    user: 'om', // Use your credentials (Username)
+    password: 'omgupta1608',// Use your credentials (Password)
+    database: 'blogo_db' //Your DB Name
 });
   
 connection.connect((err) => {
@@ -42,16 +42,18 @@ router.post('/:username/:password/signup', async (req, res) => {
 });
 
 router.post('/:username/:password/login', async (req, res) => {
-    var user = null;
+    var user = [];
+    user = user.filter(n => n); 
+
     if(!req.params.username || !req.params.password)
-    return res.status(400).send('email & password are required');
+    return res.status(400).send('Email & Password are required');
     var sql = 'SELECT * FROM users WHERE username = "' + req.params.username + '"';
     connection.query(sql ,(err, data) => {
       if (err) throw err;
       user = data;
       console.log(user);
-      if (user == null) {
-        return res.status(400).send('Cannot find user');
+      if (user.length == 0) {
+        return res.send('Cannot find user');
       }
       try{
         bcrypt.compare(req.params.password, user[0].password).then((isMatched) => {
@@ -61,10 +63,10 @@ router.post('/:username/:password/login', async (req, res) => {
             res.send('Wrong Credentials!');
           }
         }).catch(err => {
-          res.status(500).send('Internal server error\n' + err.toString());
+          res.status(500).send('Something went wrong');
         });      
       } catch {
-        res.status(500).send('Server Error!');
+        res.status(500).send('Something went wrong');
       }
     });//getUser(req.params.username);
     

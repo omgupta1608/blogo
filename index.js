@@ -14,11 +14,19 @@ app.use('/api/users/',users);
 
 
 app.get('/', (req,res) => {
-    res.sendFile(__dirname + '/views/homepage.html');
+    res.sendFile(__dirname + '/views/intro.html');
 });
 
 app.get('/login', (req, res) => {
     res.sendFile(__dirname + '/views/login.html');
+});
+
+app.get('/signup', (req,res) => {
+    res.sendFile(__dirname + '/views/signup.html');
+});
+
+app.get('/homepage', (req, res) => {
+    res.sendFile(__dirname + '/views/homepage.html');
 });
 
 app.get('/addPost', (req, res) => {
