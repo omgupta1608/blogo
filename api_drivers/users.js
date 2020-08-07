@@ -2,8 +2,10 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 var sql = require('mysql');
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
-
+const Authenticator = require('../Auth/Auth.js').Authenticator;
+var localStorage = null;
 var router = express.Router();
 
 router.use(express.json());
@@ -18,9 +20,9 @@ router.use(express.json());
 //   client.close();
 // });
 
-mongoose.connect(process.env.MONGO_D_URI, {
-  useNewUrlParser: true,  useUnifiedTopology: true
-});
+// mongoose.connect(process.env.MONGO_D_URI, {
+//   useNewUrlParser: true,  useUnifiedTopology: true
+// });
 const connection = sql.createConnection({
     host: 'localhost',
     user: process.env.DB_USER, // Use your credentials (Username)
@@ -32,6 +34,11 @@ connection.connect((err) => {
     if (err) throw err;
     console.log('Connected!');
 });
+
+if (typeof localStorage === "undefined" || localStorage === null) {
+  LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 
 
 router.post('/:username/:password/signup', async (req, res) => {
@@ -45,8 +52,16 @@ router.post('/:username/:password/signup', async (req, res) => {
 
     connection.query(sql, (err,data) => {
         if(err) throw err;
-        res.send('Welcome ' + req.params.username);
-    });
+        const user1 = { name: req.params.username };
+
+        const accessToken = jwt.sign(user1, process.env.ACCESS_TOKEN_SECRET);
+
+        localStorage.setItem('accessToken', accessToken.toString());
+        res.json({
+            message: 'Welcome ' + req.params.username,
+            accessToken: accessToken
+            });
+        });
     }catch{
         res.send("Something went wrong");
     }
@@ -70,7 +85,14 @@ router.post('/:username/:password/login', async (req, res) => {
       try{
         bcrypt.compare(req.params.password, user[0].password).then((isMatched) => {
           if(isMatched){
-            res.send('Successfully Logged In as ' + user[0].username);
+            const user1 = { name: req.params.username };
+
+            const accessToken = jwt.sign(user1, process.env.ACCESS_TOKEN_SECRET);
+            localStorage.setItem('accessToken', accessToken.toString());
+            res.json({
+              message: 'Successfully Logged In as ' + user[0].username,
+              accessToken: accessToken
+            });
           }else{
             res.send('Wrong Credentials!');
           }

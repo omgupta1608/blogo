@@ -1,9 +1,14 @@
 const ENV_HOST = 'http://' + window.location.hostname + ':4000';
-
+var localStorage = null;
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
     $.ajax({
         type: 'GET',
         dataType: 'json',
         url: ENV_HOST + '/api/posts/all_posts',
+        headers: {"Authorization": localStorage.getItem('accessToken')},
         success: function (data) {
             console.log(data);
             document.getElementById("loading").style.display = 'none';

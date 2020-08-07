@@ -2,6 +2,7 @@ var express = require('express');
 var multer = require('multer');
 const helpers = require('../helpers/upload_helper');
 const dotenv = require('dotenv').config();
+const Authenticator = require('../Auth/Auth.js').Authenticator;
 
 
 var router = express.Router();
@@ -22,15 +23,14 @@ connection.connect((err) => {
     console.log('Connected!');
 });
   
-router.get('/all_posts', (req,res) => {
+router.get('/all_posts', Authenticator,  (req,res) => {
     connection.query('SELECT * FROM posts', (err,rows) => {
         if(err) throw err;
       
         console.log('Data received from Db:');
         console.log(rows);
         res.send(rows);
-      });
-
+     });
 });
 
 
