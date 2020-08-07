@@ -1,16 +1,31 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 var sql = require('mysql');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
 
 var router = express.Router();
 
 router.use(express.json());
 
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = process.env.MONGO_D_URI;  //"mongodb+srv://omgupta:<password>@demo-cluster.y6gyu.mongodb.net/<dbname>?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true,  useUnifiedTopology: true });
+// client.connect(err => {
+//   //const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   console.log('mongo');
+//   client.close();
+// });
+
+mongoose.connect(process.env.MONGO_D_URI, {
+  useNewUrlParser: true,  useUnifiedTopology: true
+});
 const connection = sql.createConnection({
     host: 'localhost',
-    user: 'om', // Use your credentials (Username)
-    password: 'omgupta1608',// Use your credentials (Password)
-    database: 'blogo_db' //Your DB Name
+    user: process.env.DB_USER, // Use your credentials (Username)
+    password: process.env.DB_PASSWORD,// Use your credentials (Password)
+    database: process.env.DB_NAME //Your DB Name
 });
   
 connection.connect((err) => {

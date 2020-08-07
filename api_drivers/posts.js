@@ -1,7 +1,8 @@
 var express = require('express');
 var multer = require('multer');
 const helpers = require('../helpers/upload_helper');
-var path = require('path');
+const dotenv = require('dotenv').config();
+
 
 var router = express.Router();
 
@@ -11,9 +12,9 @@ const upload = multer({dest:'public/uploads/'});
 
 const connection = sql.createConnection({
     host: 'localhost',
-    user: 'om', // Use your credentials (Username)
-    password: 'omgupta1608',// Use your credentials (Password)
-    database: 'blogo_db' //Your DB Name
+    user: process.env.DB_USER, // Use your credentials (Username)
+    password: process.env.DB_PASSWORD,// Use your credentials (Password)
+    database: process.env.DB_NAME //Your DB Name
 });
   
 connection.connect((err) => {
