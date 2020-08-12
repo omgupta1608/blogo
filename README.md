@@ -10,3 +10,6 @@ Clone this repository and run npm install. After this, add your own MongoDB conn
  - MongoDB
  - JWT
  - materializeCSS
+
+## Note
+This version of the app might be unstable as it is still under development phase.

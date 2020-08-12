@@ -47,18 +47,6 @@ router.get('/all_posts', (req,res) => {
 router.post('/:id/like_post', (req, res) => {
     var post_id = req.params.id;
 
-
-    // var sql = 'UPDATE posts SET likes_count = likes_count + 1 WHERE post_id = ' + post_id;
-
-    // connection.query(sql, (err, data) => {
-    //     if(err) throw err;
-
-    //     res.send({
-    //         res_code: 200,
-    //         res_data: data
-    //     });
-    // });
-
     _posts.findOneAndUpdate({
         _id: post_id
     }, {
@@ -74,19 +62,6 @@ router.post('/:id/like_post', (req, res) => {
 });
 
 router.post('/:content/:date', upload.single('post_image'), (req, res) => {
-    // var content = req.params.content;
-    // var date = req.params.date;
-    // var likes = 0;
-    // var sql = 'INSERT INTO posts (date_time,content,likes_count,imageUrl) values ("' + date + '","' + content + '",' + likes + ',"' + req.file.filename + '")';
-    // // var sql = 'INSERT INTO posts (date_time,content,likes_count,imageUrl) values ("' + date + '","' + content + '",' + likes + ',"' + path + '")';
-
-    // connection.query(sql, (err,data) => {
-    //     if(err) throw err;
-    //     res.send({
-    //         res_code: 200,
-    //         res_data: data
-    //     });
-    //   });
 
     var post = new _posts({
         content: req.params.content,
@@ -106,34 +81,5 @@ router.post('/:content/:date', upload.single('post_image'), (req, res) => {
 
       
 });
-
-// router.post('/upload_image' ,(req, res) => {
-//     let upload = multer({ storage: storage, fileFilter: helpers.imageFilter }).single('profile_pic');
-
-//     upload(req, res, function(err) {
-//         // req.file contains information of uploaded file
-//         // req.body contains information of text fields, if there were any
-
-//         if (req.fileValidationError) {
-//             return res.send(req.fileValidationError);
-//         }
-//         else if (!req.file) {
-//             return res.send('Please select an image to upload');
-//         }
-//         else if (err instanceof multer.MulterError) {
-//             return res.send(err);
-//         }
-//         else if (err) {
-//             return res.send(err);
-//         }
-
-//         // Display uploaded image for user validation
-//         res.send({
-//             code: 200,
-//             filePath: req.file.path
-//         });
-//     });
-// });
-
 
 module.exports.router = router;
