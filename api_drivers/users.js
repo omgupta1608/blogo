@@ -23,17 +23,37 @@ router.use(express.json());
 // mongoose.connect(process.env.MONGO_D_URI, {
 //   useNewUrlParser: true,  useUnifiedTopology: true
 // });
-const connection = sql.createConnection({
-    host: 'localhost',
-    user: process.env.DB_USER, // Use your credentials (Username)
-    password: process.env.DB_PASSWORD,// Use your credentials (Password)
-    database: process.env.DB_NAME //Your DB Name
-});
+
+// mongoose.set('debug', true);
+
+// const _schema = mongoose.Schema({
+//     username: {
+//         type: String,
+//         required: true,
+//         unique: true
+//     },
+//     password: String
+// }, {
+//     collection: 'users'
+// });
+// const _users = mongoose.model('users', _schema);
+// mongoose.connect(process.env.MONGO_D_URI, {
+//     useNewUrlParser: true
+// }, () => {
+//   console.log("Connected!")
+// });
+
+// const connection = sql.createConnection({
+//     host: 'localhost',
+//     user: process.env.DB_USER, // Use your credentials (Username)
+//     password: process.env.DB_PASSWORD,// Use your credentials (Password)
+//     database: process.env.DB_NAME //Your DB Name
+// });
   
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
-});
+// connection.connect((err) => {
+//     if (err) throw err;
+//     console.log('Connected!');
+// });
 
 if (typeof localStorage === "undefined" || localStorage === null) {
   LocalStorage = require('node-localstorage').LocalStorage;
