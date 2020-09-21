@@ -1,4 +1,4 @@
-const ENV_HOST = 'http://' + window.location.hostname + ':4000';
+const ENV_HOST = 'https://' + window.location.hostname + ':4000';
 var localStorage = null;
 if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require('node-localstorage').LocalStorage;

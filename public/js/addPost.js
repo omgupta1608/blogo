@@ -1,4 +1,4 @@
-const ENV_HOST =  'http://'+window.location.hostname+':4000';
+const ENV_HOST =  'https://'+window.location.hostname+':4000';
 var current_image = null;
 function readURL(input) {
     if (input.files && input.files[0]) {

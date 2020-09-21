@@ -1,4 +1,4 @@
-const ENV_HOST =  'http://'+window.location.hostname+':4000';
+const ENV_HOST =  'https://'+window.location.hostname+':4000';
 localStorage.clear();
 function login(){
     var username = $("#username").val().toString();
